@@ -1,20 +1,17 @@
-import {StyleSheet, Text, View, Button} from 'react-native';
+import {StyleSheet, Text, View, Button, TextInput} from 'react-native';
 import React, {useState} from 'react';
 
 const App = () => {
-  const [name, setName] = useState({name: 'Hasnain', edu: 'BS Hons'});
-  const updateInfo = () => {
-    setName({
-      name: 'Asad',
-      edu: 'M.Phil',
-    });
-  };
+  const [name, setName] = useState('Hasnain');
+
   return (
     <View style={styles.container}>
-      <Text>
-        My Name Is {name.name} and my education is {name.edu}
-      </Text>
-      <Button title="Change" color="red" onPress={() => updateInfo()} />
+      <Text>Enter Your Name Here</Text>
+      <TextInput
+        placeholder="Enter Your Name..."
+        onChangeText={text => setName(text)}
+      />
+      <Text>My Name is {name}</Text>
     </View>
   );
 };
