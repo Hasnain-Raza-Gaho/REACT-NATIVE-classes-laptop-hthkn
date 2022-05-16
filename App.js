@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View, Button, TextInput} from 'react-native';
+import {StyleSheet, Text, View, Button, TextInput, Alert} from 'react-native';
 import React, {useState} from 'react';
 
 const App = () => {
@@ -6,12 +6,7 @@ const App = () => {
 
   return (
     <View style={styles.container}>
-      <Text>Enter Your Name Here</Text>
-      <TextInput
-        placeholder="Enter Your Name..."
-        onChangeText={text => setName(text)}
-      />
-      <Text>My Name is {name}</Text>
+      <Button title="Add Item" color="black" onPress={()=> Alert.alert('Error', "Sorry Can't Add Item")} />
     </View>
   );
 };
