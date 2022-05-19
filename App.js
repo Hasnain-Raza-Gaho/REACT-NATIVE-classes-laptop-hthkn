@@ -1,42 +1,50 @@
-import {StyleSheet, Text, View, Button, TextInput, Alert} from 'react-native';
+import {StyleSheet, Text, View, FlatList, TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
 
 const App = () => {
-  const [data, setData] = useState(0);
+  const [data, setData] = useState([
+    {name: 'asad', key: 0},
+    {name: 'Noor', key: 1},
+    {name: 'Smit', key: 2},
+    {name: 'Zohaib', key: 3},
+    {name: 'farhad', key: 4},
+    {name: 'Ahsan', key: 5},
+    {name: 'Shahab', key: 6},
+    {name: 'Nawab', key: 7},
+    {name: 'Ilyas', key: 8},
+    {name: 'Zubair', key: 9},
+  ]);
 
-  const info = {
-    '0': 'this is zero',
-    '1': 'this is one',
-    '2': 'this is two',
-    '3': 'this is three',
-    '4': 'this is four',
-    '5': 'this is five',
-    '6': 'this is six',
-    '7': 'this is seven',
-    '8': 'this is eight',
-    '9': 'this is nine',
+  const handler = item => {
+    console.log(item);
   };
-
   return (
     <View style={styles.container}>
-      <Button
-        title="Add Item"
-        color="black"
-        onPress={() => setData(Math.floor(Math.random() * 10))}
-
+      <FlatList
+        data={data}
+        renderItem={({item}) => (
+          <View>
+            <TouchableOpacity onPress={() => handler(item.name)}>
+              <Text style={styles.item}>{item.name}</Text>
+            </TouchableOpacity>
+          </View>
+        )}
       />
-      <Text>{data}</Text>
-      <Text>{info[data]}</Text>
     </View>
   );
 };
 
-export default App;
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: 'white',
+    marginTop: 20,
+  },
+  item: {
+    fontSize: 22,
+    backgroundColor: 'yellow',
+    marginTop: 30,
+    padding: 20,
   },
 });
+export default App;
