@@ -1,15 +1,33 @@
-import {StyleSheet, Text, View, Button} from 'react-native';
-import React from 'react';
+import {Text, View, Modal, StyleSheet, TextInput, Button} from 'react-native';
+import React, {useState} from 'react';
+import styles from './styles';
 
 const App = () => {
+  const [name, setName] = useState();
+  const [age, setAge] = useState();
+  const [modal, setModal] = useState(false);
   return (
-    <View style={{flex: 1, backgroundColor: 'lemon'}}>
-      <View style={{flex: 1, backgroundColor: 'red'}}></View>
-      <View style={{flex: 1, backgroundColor: 'blue'}}></View>
-      <View style={{flex: 1, backgroundColor: 'grey'}}></View>
-      <View style={{flex: 1, backgroundColor: '#e43'}}></View>
-      <View style={{flex: 1, backgroundColor: '#fab'}}></View>
-      <View style={{flex: 4, backgroundColor: 'yellow'}}></View>
+    <View style={styles.container}>
+      <TextInput
+        style={styles.input}
+        placeholder="Name"
+        onChangeText={text => setName(text)}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Age"
+        onChangeText={text => setAge(text)}
+      />
+      <Button title="Click" onPress={() => setModal(true)} />
+      <Modal visible={modal}>
+        <View style={styles.container}>
+          <Text>Modal Screen</Text>
+          <Text>{name}</Text>
+          <Text>{age}</Text>
+      <Button title="Click" onPress={() => setModal(false)} />
+
+        </View>
+      </Modal>
     </View>
   );
 };
