@@ -1,33 +1,22 @@
-import {Text, View, Modal, StyleSheet, TextInput, Button} from 'react-native';
-import React, {useState} from 'react';
+import React from 'react';
+import {Text, View, Switch} from 'react-native';
 import styles from './styles';
 
 const App = () => {
-  const [name, setName] = useState();
-  const [age, setAge] = useState();
-  const [modal, setModal] = useState(false);
+  const [isEnabled, setIsEnabled] = React.useState(false);
+  const toggleSwitch = () => {
+    console.log('clicked');
+    setIsEnabled(prevState => !prevState);
+  };
   return (
     <View style={styles.container}>
-      <TextInput
-        style={styles.input}
-        placeholder="Name"
-        onChangeText={text => setName(text)}
+      <Text>Switch Tutorial</Text>
+      <Switch
+        trackColor={{false: 'grey', true: 'Green'}}
+        thumbColor={isEnabled ? 'red' : 'pink'}
+        onValueChange={() => toggleSwitch()}
+        value={isEnabled}
       />
-      <TextInput
-        style={styles.input}
-        placeholder="Age"
-        onChangeText={text => setAge(text)}
-      />
-      <Button title="Click" onPress={() => setModal(true)} />
-      <Modal visible={modal}>
-        <View style={styles.container}>
-          <Text>Modal Screen</Text>
-          <Text>{name}</Text>
-          <Text>{age}</Text>
-      <Button title="Click" onPress={() => setModal(false)} />
-
-        </View>
-      </Modal>
     </View>
   );
 };
