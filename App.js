@@ -1,28 +1,20 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  TouchableOpacity,
-  TextInput,
-  Alert,
-} from 'react-native';
+import {StyleSheet, Text, View, Button} from 'react-native';
 import React from 'react';
 
 const App = () => {
+  const [name, setname] = React.useState(0);
 
-  const [name, setname] = React.useState()
+  React.useEffect(() => {
+    if(name>10){
+
+      console.warn('your DOM is updating...');
+    }
+  });
 
   return (
     <View style={styles.container}>
-      {/* <Button title="Alert" color="#000" /> */}
-      <TextInput style={styles.input} onChangeText={(text) => setname(text)}  />
-      <TouchableOpacity onPress={()=> Alert.alert("Information", "Your Name is " + name)} >
-        <View style={styles.btn}>
-          <Text>Press Here</Text>
-        </View>
-      </TouchableOpacity>
       <Text>{name}</Text>
+      <Button title="update" onPress={() => setname(name + 1)} />
     </View>
   );
 };
@@ -43,8 +35,8 @@ const styles = StyleSheet.create({
     borderColor: 'green',
     borderRadius: 20,
   },
-  input:{
+  input: {
     backgroundColor: 'grey',
-    padding: 10
-  }
+    padding: 10,
+  },
 });
