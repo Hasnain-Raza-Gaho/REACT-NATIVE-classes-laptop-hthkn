@@ -7,25 +7,16 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     marginTop: 20,
   },
-  input: {
-    backgroundColor: 'pink',
-    marginTop: 20,
-    marginBottom: 20,
-    padding: 20,
-  },
-  button: {
+  item: {
     backgroundColor: 'yellow',
-    padding: 15,
-    alignItems: 'center',
-    width: '50%',
-    alignSelf: 'center',
-    borderWidth: 5,
-    borderColor: 'green',
+    padding: 20,
+    marginVertical: 10,
   },
-  text: {
-    fontSize: 20,
-    color: 'blue',
-    fontWeight: 'bold',
+  header: {
+    fontSize: 30,
+  },
+  title: {
+    fontSize: 25,
   },
 });
 

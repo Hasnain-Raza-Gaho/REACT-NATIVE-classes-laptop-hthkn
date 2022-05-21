@@ -1,35 +1,43 @@
-import React, {useState} from 'react';
-import {
-  TextInput,
-  Text,
-  View,
-  ActivityIndicator,
-  Button,
-  Alert,
-} from 'react-native';
-
+import React from 'react';
+import {Text, View, SectionList} from 'react-native';
 import styles from './styles';
 
 const App = () => {
-  const [name, setName] = useState('');
-  const [show, setShow] = useState(false);
+  const DATA = [
+    {
+      title: 'Main Items',
+      data: ['pizza', 'Burger'],
+    },
+    {
+      title: 'Sides',
+      data: ['french Fries', 'Onion Rings'],
+    },
+    {
+      title: 'Drinks',
+      data: ['coca cola', 'sprite', 'water'],
+    },
+    {
+      title: 'Desserts',
+      data: ['Ice Creams', 'Cake'],
+    },
+  ];
 
-  const clickMe = () => {
-    setShow(true);
-    setTimeout(() => {
-      setShow(false);
-      Alert.alert('info', 'Thanks of Coming ' + name);
-    }, 2000);
-  };
+  const Item = ({title}) => (
+    <View style={styles.item}>
+      <Text style={styles.title}>{title}</Text>
+    </View>
+  )
+
   return (
     <View style={styles.container}>
-      <TextInput
-        placeholder="add text here"
-        onChangeText={text => setName(text)}
-        style={styles.input}
+      <SectionList
+        sections={DATA}
+        keyExtractor={(item, index) => item + index}
+        renderItem={({item}) => <Item title={item} />}
+        renderSectionHeader={({section: {title}}) => (
+          <Text style={styles.header}>{title}</Text>
+        )}
       />
-      <ActivityIndicator size={'large'} color="red" animating={show} />
-      <Button title="Show" onPress={() => clickMe()} />
     </View>
   );
 };
