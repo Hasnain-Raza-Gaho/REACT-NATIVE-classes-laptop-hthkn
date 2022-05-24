@@ -1,18 +1,25 @@
 import React, {useState} from 'react';
-import {View, Text, Pressable} from 'react-native';
+import {View, Text, ScrollView, RefreshControl} from 'react-native';
 import styles from './styles';
 
 const App = () => {
-  const [Count, setCount] = useState(0);
+  const [refresh, setRefresh] = useState(false);
+
+  const pullMe = () => {
+    setRefresh(true);
+    setTimeout(() => {
+      setRefresh(false);
+    }, 3000);
+  };
 
   return (
     <View style={styles.container}>
-      <Text>{Count}</Text>
-      <Pressable
-        style={({pressed}) => [{backgroundColor: pressed ? 'red' : 'yellow'}]}
-        onPress={() => setCount(Count + 1)}>
-        {({pressed})=> <Text>{pressed ? 'Pressed' : 'Press Me'}</Text>}
-      </Pressable>
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={refresh} onRefresh={() => pullMe()} />
+        }>
+        <Text>Pull to Refresh</Text>
+      </ScrollView>
     </View>
   );
 };
