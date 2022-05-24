@@ -1,32 +1,18 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import React, {useState} from 'react';
+import {View, Text, Pressable} from 'react-native';
 import styles from './styles';
-import CustomSectionList from './CustomSectionList';
 
 const App = () => {
-  const DATA = [
-    {
-      title: 'Main Items',
-      data: ['pizza', 'Burger'],
-    },
-    {
-      title: 'Sides',
-      data: ['french Fries', 'Onion Rings'],
-    },
-    {
-      title: 'Drinks',
-      data: ['coca cola', 'sprite', 'water'],
-    },
-    {
-      title: 'Desserts',
-      data: ['Ice Creams', 'Cake'],
-    },
-  ];
+  const [Count, setCount] = useState(0);
 
   return (
     <View style={styles.container}>
-      <CustomSectionList data={DATA} />
-
+      <Text>{Count}</Text>
+      <Pressable
+        style={({pressed}) => [{backgroundColor: pressed ? 'red' : 'yellow'}]}
+        onPress={() => setCount(Count + 1)}>
+        {({pressed})=> <Text>{pressed ? 'Pressed' : 'Press Me'}</Text>}
+      </Pressable>
     </View>
   );
 };
