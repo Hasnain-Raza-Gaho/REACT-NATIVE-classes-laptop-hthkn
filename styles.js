@@ -4,13 +4,20 @@ import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: "center",
+    justifyContent: "center"
   },
-  value: {
-    fontWeight: '600',
-    padding: 4,
-    marginBottom: 8
+  fadingContainer: {
+    padding: 20,
+    backgroundColor: "powderblue"
+  },
+  fadingText: {
+    fontSize: 28
+  },
+  buttonRow: {
+    flexBasis: 100,
+    justifyContent: "space-evenly",
+    marginVertical: 16
   }
 });
 

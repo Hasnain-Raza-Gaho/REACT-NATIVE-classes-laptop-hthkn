@@ -1,26 +1,46 @@
-import React, {useState} from 'react';
-import { Platform, StyleSheet, Text, ScrollView } from 'react-native';
-import styles from './styles'
+import React, {useRef, useState} from 'react';
+import {Text, View, Button, Animated} from 'react-native';
+import styles from './styles';
 
 const App = () => {
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+
+  const fadeIn = () => {
+    // Will change fadeAnim value to 1 in 5 seconds
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 5000,
+      useNativeDriver: true
+
+    }).start();
+  };
+
+  const fadeOut = () => {
+    // Will change fadeAnim value to 0 in 3 seconds
+    Animated.timing(fadeAnim, {
+      toValue: 0,
+      duration: 3000,
+      useNativeDriver: true
+    }).start();
+  };
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-    <Text>OS</Text>
-    <Text style={styles.value}>{Platform.OS}</Text>
-    <Text>OS Version</Text>
-    <Text style={styles.value}>{Platform.Version}</Text>
-    <Text>isTV</Text>
-    <Text style={styles.value}>{Platform.isTV.toString()}</Text>
-    {Platform.OS === 'ios' && <>
-      <Text>isPad</Text>
-      <Text style={styles.value}>{Platform.isPad.toString()}</Text>
-    </>}
-    <Text>Constants</Text>
-    <Text style={styles.value}>
-      {JSON.stringify(Platform.constants, null, 2)}
-    </Text>
-  </ScrollView>
+    <View style={styles.container}>
+      <Animated.View
+        style={[
+          styles.fadingContainer,
+          {
+            // Bind opacity to animated value
+            opacity: fadeAnim,
+          },
+        ]}>
+        <Text style={styles.fadingText}>Fading View!</Text>
+      </Animated.View>
+      <View style={styles.buttonRow}>
+        <Button title="Fade In View" onPress={fadeIn} />
+        <Button title="Fade Out View" onPress={fadeOut} />
+      </View>
+    </View>
   );
 };
 
