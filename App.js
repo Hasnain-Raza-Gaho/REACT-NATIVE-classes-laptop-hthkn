@@ -1,42 +1,26 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput, Appearance} from 'react-native';
+import { Platform, StyleSheet, Text, ScrollView } from 'react-native';
+import styles from './styles'
 
 const App = () => {
-  const colorScheme = Appearance.getColorScheme('dark');
-  const [name, setName] = useState('');
-  const [age, setAge] = useState();
 
   return (
-    <View
-      style={{
-        backgroundColor: colorScheme === 'light' ? 'white' : 'grey',
-      }}>
-      <TextInput
-      onChangeText={(text) => setName(text)}
-      placeholder='Enter Your Name'
-        style={{
-          marginTop: 20,
-          backgroundColor: colorScheme === 'light' ? 'grey' : 'white',
-          color: colorScheme === 'light' ? 'white' : 'grey',
-        }}
-      />
-      <TextInput
-      placeholder='Enter Your Age'
-
-      onChangeText={(text) => setAge(text)}
-      keyboardType='numeric'
-
-        style={{
-          marginTop: 20,
-          backgroundColor: colorScheme === 'light' ? 'grey' : 'white',
-          color: colorScheme === 'light' ? 'white' : 'grey',
-        }}
-      />
-
-      <Text>
-        {name} {age}
-      </Text>
-    </View>
+    <ScrollView contentContainerStyle={styles.container}>
+    <Text>OS</Text>
+    <Text style={styles.value}>{Platform.OS}</Text>
+    <Text>OS Version</Text>
+    <Text style={styles.value}>{Platform.Version}</Text>
+    <Text>isTV</Text>
+    <Text style={styles.value}>{Platform.isTV.toString()}</Text>
+    {Platform.OS === 'ios' && <>
+      <Text>isPad</Text>
+      <Text style={styles.value}>{Platform.isPad.toString()}</Text>
+    </>}
+    <Text>Constants</Text>
+    <Text style={styles.value}>
+      {JSON.stringify(Platform.constants, null, 2)}
+    </Text>
+  </ScrollView>
   );
 };
 
