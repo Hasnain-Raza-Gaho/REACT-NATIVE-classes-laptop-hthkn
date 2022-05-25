@@ -7,9 +7,16 @@ const styles = StyleSheet.create({
     backgroundColor: 'grey',
     padding: 20,
     justifyContent: 'center',
-    alignItems: 'center'
-   
+    alignItems: 'center',
   },
+  touchable: {
+    flex: 0.5,
+    borderColor: 'black',
+    borderWidth: 1,
+  },
+  text:{
+    alignSelf: 'center'
+  }
 });
 
 export default styles;

@@ -1,14 +1,22 @@
 import React, {useState} from 'react';
-import {View, Text, Image} from 'react-native';
+import {View, Text, TouchableNativeFeedback} from 'react-native';
 import styles from './styles';
 
 const App = () => {
+  const [rippleOverFlow, setRippleOverFlow] = useState(false)
   return (
     <View style={styles.container}>
-      <Image
-        source={require('./src/assets/image1.jpg')}
-        style={{height: 200, width: 200, tintColor: 'yellow'}}
-      />
+      <TouchableNativeFeedback 
+      onPress={()=> setRippleOverFlow(!rippleOverFlow)}
+      background={TouchableNativeFeedback.Ripple('red', rippleOverFlow)}
+
+      >
+        <View style={styles.touchable}>
+
+        <Text style={styles.text}>Touchable Native Feedback</Text>
+        </View>
+
+      </TouchableNativeFeedback>
     </View>
   );
 };
