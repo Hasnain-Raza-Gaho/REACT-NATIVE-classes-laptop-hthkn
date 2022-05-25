@@ -1,28 +1,33 @@
 import React, {useState} from 'react';
-import {Button, Text, View, StyleSheet} from 'react-native';
+import {Button, Text, View, StyleSheet, TextInput, Alert} from 'react-native';
 import Slider from '@react-native-community/slider';
 
 const App = () => {
-  const [range, setRange] = useState(0);
-
+  const [name, setName] = useState('');
+  const [age, setAge] = useState(0);
   return (
     <View style={styles.container}>
-      <Text
-        style={{fontSize: 40, fontWeight: 'bold', margin: 20, opacity: range}}>
-        Visible
-      </Text>
-      <Text
-        style={{fontSize: 40, fontWeight: 'bold', margin: 20, opacity: range}}>
-        {Math.floor(range * 100)}
-      </Text>
+      <TextInput
+        placeholder="Enter Your Name"
+        onChangeText={(text) => setName(text.toString())}
+        value={name}
+        style={{backgroundColor: 'yellow', padding: 20, width: '90%'}}
+      />
+      <Text style={{fontSize: 30}}>Age: {Math.floor(age)}</Text>
 
       <Slider
         style={{width: 300, height: 50}}
-        minimumValue={0}
-        onValueChange={value => setRange(value)}
-        maximumValue={1}
-        minimumTrackTintColor="#FFFFFF"
-        maximumTrackTintColor="#000000"
+        minimumValue={18}
+        maximumValue={150}
+        onValueChange={value => setAge(Math.floor(value))}
+        thumbTintColor="yellow"
+      />
+
+      <Button
+        title="Submit"
+        onPress={() =>
+          Alert.alert("Welcome", "Hello"+ name + ",Welcome to our app and your " + age + " years old!" )
+        }
       />
     </View>
   );
@@ -32,6 +37,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
+    alignItems: 'center',
     paddingTop: 44,
     padding: 8,
   },
