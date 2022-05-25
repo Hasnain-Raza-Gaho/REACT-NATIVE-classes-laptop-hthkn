@@ -3,25 +3,25 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    padding: 10,
-    flex:1,
+    flex: 1,
     backgroundColor: 'yellow',
-    marginTop: 20,
-    justifyContent: 'center',
-    alignItems:'center'
+    padding: 20,
+    margin: 40,
+    borderBottomWidth: 20,
+    borderTopWidth: 20,
+    borderWidth: 10,
+    borderBottomColor: 'red',
+    borderTopColor: 'grey',
+    borderRightColor: 'green',
+    borderLeftColor: 'blue',
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 90,
+    borderColor: 'black',
+    borderWidth: 40,
+    opacity: 0.4
+    
+
   },
-  text:{
-    fontFamily: 'notoserif',
-    fontStyle: 'italic',
-    fontWeight: 'bold',
-    letterSpacing: 3,
-    textAlign: 'right',
-    textDecorationLine: 'line-through',
-    textDecorationColor: 'red',
-    textTransform: 'lowercase',
-    fontSize: 30
-  }
- 
 });
 
 export default styles;
