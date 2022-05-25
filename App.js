@@ -1,31 +1,16 @@
-import React, {useEffect} from 'react';
-import {Text, View, StyleSheet, BackHandler, Alert} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {Text, View, Alert, Button, StyleSheet} from 'react-native';
 
 const App = () => {
-  useEffect(() => {
-    const backAction = () => {
-      Alert.alert('Hold on!', 'Are you sure you want to go back?', [
-        {
-          text: 'Cancel',
-          onPress: () => null,
-          style: 'cancel',
-        },
-        {text: 'YES', onPress: () => BackHandler.exitApp()},
-      ]);
-      return true;
-    };
+  const [name, setName] = useState('');
 
-    const backHandler = BackHandler.addEventListener(
-      'hardwareBackPress',
-      backAction,
-    );
-
-    return () => backHandler.remove();
-  }, []);
-
+  const ClickMe = () => {
+    Alert.prompt('Welcome', 'Welcome to toyAlert!', [{text: 'OK'}]);
+  };
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Click Back button!</Text>
+      <Text>{name}</Text>
+      <Button title="Click" onPress={() => ClickMe()} />
     </View>
   );
 };
