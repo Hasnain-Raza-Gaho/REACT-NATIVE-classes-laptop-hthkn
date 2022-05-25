@@ -1,33 +1,15 @@
 import React, {useState} from 'react';
 import {Button, Text, View, StyleSheet, TextInput, Alert} from 'react-native';
-import Slider from '@react-native-community/slider';
+import { Avatar } from '@rneui/base/dist/Avatar/Avatar';
 
 const App = () => {
-  const [name, setName] = useState('');
-  const [age, setAge] = useState(0);
   return (
     <View style={styles.container}>
-      <TextInput
-        placeholder="Enter Your Name"
-        onChangeText={(text) => setName(text.toString())}
-        value={name}
-        style={{backgroundColor: 'yellow', padding: 20, width: '90%'}}
-      />
-      <Text style={{fontSize: 30}}>Age: {Math.floor(age)}</Text>
-
-      <Slider
-        style={{width: 300, height: 50}}
-        minimumValue={18}
-        maximumValue={150}
-        onValueChange={value => setAge(Math.floor(value))}
-        thumbTintColor="yellow"
-      />
-
-      <Button
-        title="Submit"
-        onPress={() =>
-          Alert.alert("Welcome", "Hello"+ name + ",Welcome to our app and your " + age + " years old!" )
-        }
+      <Avatar 
+      containerStyle={{ height: 400, width: 400 }}
+      source={{
+        uri: 'https://images.unsplash.com/photo-1537511446984-935f663eb1f4?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870'
+      }}
       />
     </View>
   );
@@ -40,20 +22,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: 44,
     padding: 8,
-  },
-  header: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  paragraph: {
-    margin: 24,
-    textAlign: 'center',
-  },
-  separator: {
-    marginVertical: 8,
-    borderBottomColor: '#737373',
-    borderBottomWidth: StyleSheet.hairlineWidth,
   },
 });
 
